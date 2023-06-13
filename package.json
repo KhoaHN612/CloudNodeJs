@@ -2,10 +2,11 @@
   "name": "webasm",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --inspect index.js"
+    "start": "nodemon --inspect src/index.js",
+    "watch": "node-sass -w src/resources/scss/ --output src/public/css/"
   },
   "repository": {
     "type": "git",
@@ -18,9 +19,12 @@
   },
   "homepage": "https://github.com/KhoaHN612/CloudNodeJs#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.7",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "node-sass": "^9.0.0",
     "nodemon": "^2.0.22"
   }
 }
