@@ -3,8 +3,9 @@ const router = express.Router();
 
 const sitesController = require('../app/controllers/SitesController');
 const homesController = require('../app/controllers/HomesController');
+const connectEnsureLogin = require('connect-ensure-login'); //authorization
 
-router.get('/cart',homesController.cart);
+router.get('/cart',connectEnsureLogin.ensureLoggedIn(), homesController.cart);
 router.get('/login',sitesController.login);
 router.get('/search',sitesController.searchGet);
 router.post('/search',sitesController.searchPost);

@@ -1,0 +1,22 @@
+<table class="table ms-3 me-3">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Price</th>
+      <th scope="col">Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each products}}
+    <tr>
+      <th scope="row">{{sum @index 1}}</th>
+      <td>{{this.name}}</td>
+      <td>{{this.description}}</td>
+      <td>{{this.price}} VND</td>
+      <td><a href="/product/edit/{{this.slug}}"><button class="btn btn-primary">Edit</button></a></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
