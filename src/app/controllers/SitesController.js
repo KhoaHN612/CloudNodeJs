@@ -1,3 +1,5 @@
+const Products = require('../models/Products');
+
 class SitesController {
   //[GET] /login
   login(req, res) {
@@ -19,6 +21,12 @@ class SitesController {
   searchPost(req, res) {
     console.log(req.body);
     res.render("search");
+  }
+
+  test(req,res){
+    Products.find({})
+    .then(products => {res.json(products)})
+    .catch(err => res.send(err))
   }
 }
 
