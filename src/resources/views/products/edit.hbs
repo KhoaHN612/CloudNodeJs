@@ -8,6 +8,14 @@
     <textarea name="description" class="form-control" id="description">{{prod.description}}</textarea>
   </div>
   <div class="mb-3">
+    <label for="manufacturer" class="form-label">Product Manufacturer</label>
+    <input type="text" name="manufacturer" class="form-control" id="manufacturer" value="{{prod.manufacturer}}">
+  </div>
+  <div class="mb-3">
+    <label for="material" class="form-label">Product Material</label>
+    <input type="text" name="material" class="form-control" id="material" value="{{prod.material}}">
+  </div>
+  <div class="mb-3">
     <label for="formFile" class="form-label">Product Image</label>
     <br>
     <img src="/img/{{prod.image}}" class="img-fluid" style="max-height: 600px" alt="">
@@ -19,7 +27,7 @@
   </div>
   <div class="row">
     <button type="submit" class="btn btn-primary m-3">UPDATE</button>
-    <a class="w-100" href="/product/delete/{{prod.slug}}"><button class="btn btn-danger m-3 mt-0 w-100">DELETE</button></a>
+    <a class="btn btn-danger m-3 mt-0 w-100" href="/product/delete/{{prod.slug}}">DELETE</a>
   </div>
 
 </form>

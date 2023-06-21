@@ -7,17 +7,26 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/login">Home</a>
+          <a class="nav-link active" aria-current="page" href="/home">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/cart">Cart</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link">Welcome {{user.username}}</a>
+          <a class="nav-link" href="/history">History</a>
         </li>
+        {{!-- <li class="nav-item">
+          
+        </li> --}}
         <li class="nav-item">
+          {{#if user}}
           <a class="nav-link" href="/logout">Logout</a>
+          {{else}}
+          <a class="nav-link" href="/login">Login</a>
+          {{/if}}
         </li>
+        {{#if user}}
+        {{#contains user.role 'staff'}}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             More
@@ -25,11 +34,20 @@
           <ul class="dropdown-menu">
             <li><a class="nav-link" href="/product/add">Add Product</a></li>
             <li><a class="nav-link" href="/product/manage">Manage Product</a></li>
+            <li><a class="nav-link" href="/statistic">Manage Statistic</a></li>
           </ul>
         </li>
+        {{/contains}}
+        {{/if}}
+        {{user.role}}
       </ul>
+          {{#if user}}
+          <a class="nav-link text-light">Welcome {{user.username}}</a>
+          {{else}}
+          <a class="nav-link text-light">Welcome Guest</a>
+          {{/if}}
       <form class="d-flex" role="search" action="/search" method="get">
-        <input name="keyword" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <input name="keyword" class="form-control me-2 ms-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>

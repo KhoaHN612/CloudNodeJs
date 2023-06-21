@@ -15,7 +15,10 @@
       <td>{{this.name}}</td>
       <td>{{this.description}}</td>
       <td>{{this.price}} VND</td>
-      <td><a href="/product/edit/{{this.slug}}"><button class="btn btn-primary">Edit</button></a></td>
+      <td>
+        <a href="/product/addmore/{{this.slug}}"><button class="btn btn-primary">Add More</button></a>
+        <a href="/product/edit/{{this.slug}}"><button class="btn btn-info">Edit</button></a>
+      </td>
     </tr>
     {{/each}}
   </tbody>

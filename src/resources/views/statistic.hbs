@@ -1,0 +1,31 @@
+<h2>Statistic Report</h2>
+<table class="table ms-3 me-3">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Shop</th>
+      <th scope="col">Stock</th>
+      <th scope="col">Sale</th>
+      <th scope="col">Total Import Price</th>
+      <th scope="col">Total Sale Price</th>
+      <th scope="col">Profit</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each products}}
+    {{#each storages}}
+    <tr>
+      <th scope="row">{{sum @index 1}}</th>
+      <td>{{../name}}</td>
+      <td>{{shop.name}}</td>
+      <td>{{stock}}</td>
+      <td>{{sale}}</td>
+      <td>{{importValue}} VND</td>
+      <td>{{saleValue}} VND</td>
+      <td>{{dec saleValue importValue}}</td>
+    </tr>
+    {{/each}}
+    {{/each}}
+  </tbody>
+</table>

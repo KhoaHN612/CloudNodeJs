@@ -1,5 +1,6 @@
 const homesRouter = require('./homes');
 const sitesRouter = require('./sites');
+const cartsRouter = require('./carts');
 const productsRouter = require('./products');
 const connectEnsureLogin = require('connect-ensure-login'); //authorization
 const session = require('express-session');  // session middleware
@@ -13,6 +14,8 @@ function route(app){
     });
 
     app.use('/home', homesRouter);
+
+    app.use('/cart', connectEnsureLogin.ensureLoggedIn(), cartsRouter);
 
     app.use('/product', productsRouter);
 
@@ -43,7 +46,7 @@ function route(app){
       });
     });
 
-    app.post('/login', passport.authenticate('local', { failureRedirect: '/' }),  function(req, res) {
+    app.post('/login', passport.authenticate('local', { failureRedirect: '/login' }),  function(req, res) {
       console.log(req.user)
       res.redirect('/home');
     });

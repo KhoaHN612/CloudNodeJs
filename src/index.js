@@ -9,9 +9,10 @@ const session = require('express-session');  // session middleware
 const passport = require('passport');  // authentication
 const connectEnsureLogin = require('connect-ensure-login'); //authorization
 const User = require('./app/models/Users');
+const moment = require('moment');
 
 const app = express();
-const port = 3000;
+// const port = 3000;
 
 app.use(fileUpload());
 
@@ -42,6 +43,20 @@ app.engine('.hbs', engine({
   extname: '.hbs',
   helpers:{
     sum: (a,b) => a + b,
+    dec: (a,b) => a - b,
+    isEqual: function (value1, value2, options) {
+      return value1 === value2;
+    },
+    contains: function (value, substring, options) {
+      if (value && value.trim().includes(substring)) {
+        return options.fn(this);
+      }
+      return options.inverse(this);
+    },
+    formatDate: function (timestamp) {
+      const formattedDate = moment(timestamp).format('DD MMMM YYYY, HH:mm');
+      return formattedDate;
+    },
   }
 }));
 app.set('view engine', '.hbs');
@@ -57,4 +72,7 @@ route(app);
 //   console.log(`Example app listening on port ${port}`)
 // })
 
-app.listen(process.env.PORT, '0.0.0.0');
+const port = process.env.PORT || 3000;
+app.listen(port, '0.0.0.0', () => {
+  console.log('Server is running at ' + port);
+});

@@ -1,5 +1,7 @@
-const Products = require('../models/Products');
-
+const Product = require('../models/Products');
+const Order = require('../models/Orders');
+const Shop = require('../models/Shops');
+const {mongooseToObjects} = require('../../util/mongoose');
 class SitesController {
   //[GET] /login
   login(req, res) {
@@ -8,7 +10,25 @@ class SitesController {
 
   //[GET] /
   home(req, res) {
+    console.log('Home');
     res.render("home");
+  }
+
+  history(req, res) {
+    Order.find({owner: req.user._id}).populate('item').populate('shop').exec()
+    .then(
+      orders => res.render('history', {orders: mongooseToObjects(orders)})
+    )
+    // res.render("history");
+  }
+
+  statistic(req, res) {
+    Product.find({}).populate('storages.shop')
+    .then(products => {
+      res.render('statistic', {products : mongooseToObjects(products)})
+      // res.send(products)
+    })
+    .catch(err => res.send(err))
   }
 
   //[GET] /search
@@ -24,9 +44,7 @@ class SitesController {
   }
 
   test(req,res){
-    Products.find({})
-    .then(products => {res.json(products)})
-    .catch(err => res.send(err))
+    res.render('test');
   }
 }
 

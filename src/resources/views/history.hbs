@@ -1,0 +1,27 @@
+<h2>Order history of {{user.username}}</h2>
+<table class="table ms-3 me-3">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Shop</th>
+      <th scope="col">Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each orders}}
+    <tr>
+      <th scope="row">{{sum @index 1}}</th>
+      <td>{{this.item.name}}</td>
+      <td style="max-width: 300px;">{{this.item.description}}</td>
+      <td>{{this.price}} VND</td>
+      <td>{{this.qty}}</td>
+      <td>{{this.shop.name}}</td>
+      <td>{{formatDate this.createdAt}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

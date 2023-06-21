@@ -1,0 +1,36 @@
+<h2>Cart of {{user.username}}</h2>
+<table class="table ms-3 me-3">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Shop</th>
+      <th scope="col">Remove</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each cart.items}}
+    <tr>
+      <th scope="row">{{sum @index 1}}</th>
+      <td>{{this.item.name}}</td>
+      <td>{{this.item.description}}</td>
+      <td>{{this.price}} VND</td>
+      <td>{{this.qty}}</td>
+      <td>{{this.shop.name}}</td>
+      <td><a href="/product/{{this._id}}/removeCart"><button class="btn btn-primary">Remove</button></a></td>
+    </tr>
+    {{/each}}
+    <tr>
+      <td><b>Total</b></td>
+      <td></td>
+      <td></td>
+      <td><b>{{cart.totalPrice}} VND</b></td>
+      <td></td>
+      <td></td>
+      <td><a href="/cart/payment"><button class="btn btn-danger">Make Payment</button></a></td>
+    </tr>
+  </tbody>
+</table>
